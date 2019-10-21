@@ -68,10 +68,26 @@ void selectionSort(int arr[],int n)
         }
     }
 }
+//7 8 9 6
+void insertionsort(int arr[],int n)
+{
+    int j,temp;
+    for(int i=0;i<n;i++)
+    {
+        j=i;
+        temp=arr[i];
+        while(j>0&&temp<arr[j-1])
+        {
+            arr[j]=arr[j-1];
+            j--;
+        }
+        arr[j]=temp;
+    }
+}
 int main()
 {
     cout<<"TIME IN MICROSECONDS\n";
-    cout<<left<<setw(10)<<"n"<<left<<setw(15)<<"mergesort"<<left<<setw(20)<<"selectionsort"<<"\n";
+    cout<<left<<setw(10)<<"n"<<left<<setw(15)<<"mergesort"<<left<<setw(20)<<"selectionsort"<<left<<setw(20)<<"insertionsort"<<"\n";
     for(int n=10;n<=1000000;n=n*10)
     {   
         int *arr=createArray(n);
@@ -82,7 +98,11 @@ int main()
         long start_time_sel=getTimeinMicroseconds();
         selectionSort(arr,n);
         long end_time_sel=getTimeinMicroseconds();
-        cout<<left<<setw(10)<<n<<left<<setw(15)<<(end_time_merge-start_time_merge)<<left<<setw(20)<<(end_time_sel-start_time_sel)<<"\n";
+        arr=createArray(n);
+        long start_time_ins=getTimeinMicroseconds();
+        selectionSort(arr,n);
+        long end_time_ins=getTimeinMicroseconds();
+        cout<<left<<setw(10)<<n<<left<<setw(15)<<(end_time_merge-start_time_merge)<<left<<setw(20)<<(end_time_sel-start_time_sel)<<left<<setw(20)<<(end_time_ins-start_time_ins)<<"\n";
     }
 
 }
